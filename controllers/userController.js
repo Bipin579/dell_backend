@@ -246,7 +246,7 @@ exports.sendUserPasswordResetEmail = async (req, res) => {
     });
 
     //link for user
-    const link = `http://localhost:3000/users/saveforgotpassword/${user._id}/${token}`;
+    const link = `https://faded-kick-2555-jd4p.vercel.app/users/saveforgotpassword/${user._id}/${token}`;
     let info = await transporter.sendMail({
       from: "bipinecommerce@gmail.com",
       to: user.email,
