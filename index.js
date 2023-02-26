@@ -27,6 +27,9 @@ const options = {
       {
         url: "http://localhost:8080",
       },
+      {
+        url: "https://uninterested-ant-tam.cyclic.app",
+      },
     ],
   },
   apis: ["./routes/*.js"],
