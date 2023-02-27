@@ -5,6 +5,7 @@ const {
   getSingleUserCart,
   removeSingleCartItem,
   removeAllCartItem,
+  updateProductItem,
 } = require("../controllers/cartController");
 const authorisation = require("../middlewares/authenticate.middleware");
 
@@ -20,7 +21,12 @@ cartRoute.get("/allcart", getAllCartData);
 
 // get single user cart
 
-cartRoute.get("/singlecart",authorisation, getSingleUserCart);
+cartRoute.get("/singlecart", authorisation, getSingleUserCart);
+
+
+// update items of each products
+
+cartRoute.patch("/updateitem",authorisation,updateProductItem)
 
 
 // delete single cart item

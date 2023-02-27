@@ -4,18 +4,16 @@ const CartModel = require("../models/cartModel");
 
 exports.createCart = async (req, res) => {
   try {
-    const cart = await CartModel.create(req.body );
+    const cart = await CartModel.create(req.body);
     res
       .status(200)
       .send({ success: true, message: "Product Added Successfully", cart });
   } catch (error) {
-    res
-      .status(500)
-      .send({
-        success: false,
-        message: "Something Went Wrong",
-        error: error.message,
-      });
+    res.status(500).send({
+      success: false,
+      message: "Something Went Wrong",
+      error: error.message,
+    });
   }
 };
 
@@ -39,7 +37,7 @@ exports.getAllCartData = async (req, res) => {
 
 exports.getSingleUserCart = async (req, res) => {
   try {
-    const userCart =await CartModel.find({ user: req.body.user });
+    const userCart = await CartModel.find({ user: req.body.user });
     res.status(200).send({
       success: true,
       message: "Success",
@@ -47,10 +45,15 @@ exports.getSingleUserCart = async (req, res) => {
       totalCount: userCart.length,
     });
   } catch (error) {
-    res.status(500).send({ success: false, message: "Something Went Wrong",error:error.message });
+    res
+      .status(500)
+      .send({
+        success: false,
+        message: "Something Went Wrong",
+        error: error.message,
+      });
   }
 };
-
 
 // remove cart item
 
@@ -65,7 +68,6 @@ exports.removeSingleCartItem = async (req, res) => {
   }
 };
 
-
 //remove all cart item
 
 exports.removeAllCartItem = async (req, res) => {
@@ -77,4 +79,20 @@ exports.removeAllCartItem = async (req, res) => {
   } catch (error) {
     res.status(500).send({ success: false, message: "Something Went Wrong" });
   }
-}
+};
+
+// update items of each product
+
+exports.updateProductItem = async (req, res) => {
+  try {
+    await CartModel.findByIdAndUpdate({
+      _id: req.params.id,
+      items: req.body.items,
+    });
+    res
+      .status(200)
+      .send({ success: true, message: "Product updated Successfully" });
+  } catch (error) {
+    res.status(500).send({ success: false, message: "Something Went Wrong" });
+  }
+};

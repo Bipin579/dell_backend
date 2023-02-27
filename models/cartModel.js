@@ -6,7 +6,8 @@ const cartSchema = new mongoose.Schema(
     "original_price":{type:Number,required:true},
     "discounted_price": { type: Number, required: true },
     "image_url": { type: String, required: true },
-    "user":{type:String,required:true},
+    "user": { type: String, required: true },
+    "items": { type:Number, default: 1 },
   },
   { timestamps: true },
   { versionKey: false }
