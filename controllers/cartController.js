@@ -85,13 +85,13 @@ exports.removeAllCartItem = async (req, res) => {
 
 exports.updateProductItem = async (req, res) => {
   try {
-    await CartModel.findByIdAndUpdate({
+   const updated = await CartModel.findByIdAndUpdate({
       _id: req.params.id,
       items: req.body.items,
     });
     res
       .status(200)
-      .send({ success: true, message: "Product updated Successfully" });
+      .send({ success: true, message: "Product updated Successfully",updated });
   } catch (error) {
     res.status(500).send({ success: false, message: "Something Went Wrong" });
   }
