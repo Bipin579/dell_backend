@@ -26,7 +26,7 @@ cartRoute.get("/singlecart", authorisation, getSingleUserCart);
 
 // update items of each products
 
-cartRoute.patch("/updateitem",authorisation,updateProductItem)
+cartRoute.patch("/updateitem/:id",authorisation,updateProductItem)
 
 
 // delete single cart item
